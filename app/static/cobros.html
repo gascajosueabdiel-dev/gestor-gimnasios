@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cobro de Membresía - Sistema de Gimnasios</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<div class="form-card" style="max-width: 860px;">
+  <div class="page-header">
+    <h2>Cobro de Membresía</h2>
+    <div class="header-actions">
+      <a href="/dashboard.html" class="btn-secondary">Panel principal</a>
+      <button onclick="logoutUser()" class="btn-small">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <p class="info-note" id="gym-info">Cargando gimnasio...</p>
+
+  <div id="cobro-error" class="alert-error"></div>
+  <div id="cobro-ok" class="alert-success"></div>
+
+  <form id="cobro-form" novalidate>
+    <!-- 1. Socio -->
+    <div class="section-title">1. Socio</div>
+    <div class="form-row" style="grid-template-columns: 2fr 1fr;">
+      <div class="form-group">
+        <label for="buscar-socio">Buscar por nombre o número de referencia</label>
+        <input type="search" id="buscar-socio" maxlength="100" placeholder="Ana Pérez o 15">
+      </div>
+      <div class="form-group">
+        <label>&nbsp;</label>
+        <button type="button" id="btn-buscar" class="btn-secondary" style="width: 100%; padding: 0.75rem;">Buscar</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="socio">Socio *</label>
+      <select id="socio">
+        <option value="">Busca un socio primero</option>
+      </select>
+    </div>
+
+    <!-- 2. Plan y método de pago -->
+    <div class="section-title">2. Plan y método de pago</div>
+    <div class="form-row" style="grid-template-columns: 1fr 1fr;">
+      <div class="form-group">
+        <label for="plan">Plan *</label>
+        <select id="plan"></select>
+      </div>
+      <div class="form-group">
+        <label for="metodo">Método de pago *</label>
+        <select id="metodo">
+          <option value="EFECTIVO">Efectivo</option>
+          <option value="TARJETA">Tarjeta</option>
+          <option value="TRANSFERENCIA">Transferencia</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 3. Desglose -->
+    <div class="section-title">3. Desglose</div>
+    <table class="data-table">
+      <tbody>
+        <tr><td>Plan</td><td id="d-plan" class="price-cell">$0.00</td></tr>
+        <tr><td id="d-insc-label">Inscripción</td><td id="d-insc" class="price-cell">$0.00</td></tr>
+        <tr><td>Vencimiento</td><td id="d-vence">-</td></tr>
+      </tbody>
+    </table>
+    <div class="price-preview" style="margin-top: 1rem;">
+      <span>Total a cobrar</span>
+      <strong id="d-total">$0.00</strong>
+    </div>
+
+    <button type="submit" class="btn-primary" id="btn-cobrar">Cobrar</button>
+  </form>
+
+  <!-- Historial del socio -->
+  <div class="section-title" style="margin-top: 2rem;">Pagos del socio</div>
+  <div class="table-wrapper">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Plan</th>
+          <th>Método</th>
+          <th>Inscripción</th>
+          <th>Total</th>
+          <th>Vence</th>
+        </tr>
+      </thead>
+      <tbody id="historial-body"></tbody>
+    </table>
+    <p id="historial-vacio" class="empty-state" style="display: block;">Selecciona un socio para ver sus pagos.</p>
+  </div>
+</div>
+
+<script src="/js/auth.js"></script>
+<script src="/js/cobros.js"></script>
+</body>
+</html>

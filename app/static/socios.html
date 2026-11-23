@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socios - Sistema de Gimnasios</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/socios.css">
+</head>
+<body class="pagina-socios">
+
+<header class="barra-socios">
+  <a href="/dashboard.html" class="enlace-barra">Panel principal</a>
+  <label for="selector-gimnasio">Gimnasio</label>
+  <select id="selector-gimnasio"></select>
+  <button type="button" class="boton-barra" onclick="logoutUser()">Cerrar sesión</button>
+</header>
+
+<main class="recepcion">
+  <section class="busqueda" aria-label="Buscar socios">
+    <h2>Socios</h2>
+    <div class="busqueda-controles">
+      <input id="buscador" type="search" maxlength="100"
+             placeholder="Nombre o número de referencia"
+             aria-label="Buscar por nombre o número de referencia">
+      <button id="abrir-alta" type="button" class="btn-primary">Registrar socio</button>
+    </div>
+    <p id="estado-lista" class="estado" aria-live="polite"></p>
+    <ul id="lista-socios" class="lista"></ul>
+  </section>
+
+  <section id="panel" class="form-card panel" aria-live="polite">
+    <p id="panel-vacio" class="estado">Busca a un socio para ver su ficha.</p>
+
+    <article id="ficha" class="ficha" hidden>
+      <div class="disco" aria-label="Número de referencia">
+        <span id="ficha-numero" class="disco-numero"></span>
+        <span class="disco-texto">referencia</span>
+      </div>
+      <h2 id="ficha-nombre"></h2>
+      <p id="ficha-confirmacion" class="confirmacion" hidden>Socio registrado.</p>
+      <dl>
+        <dt>Celular</dt><dd id="ficha-celular"></dd>
+        <dt>Fecha de nacimiento</dt><dd id="ficha-fecha"></dd>
+        <dt>Metas</dt><dd id="ficha-metas"></dd>
+      </dl>
+
+      <section id="membresia" class="membresia" aria-labelledby="membresia-titulo">
+        <h3 id="membresia-titulo" class="section-title">Membresía</h3>
+        <p id="membresia-estado" class="estado"></p>
+        <button id="abrir-asignar" type="button" class="btn-secundario">Asignar plan</button>
+
+        <div id="membresia-aviso" class="alert-error"></div>
+        <form id="form-membresia" novalidate hidden>
+          <div class="form-group">
+            <label for="campo-plan">Plan</label>
+            <select id="campo-plan" name="plan_id" aria-describedby="error-plan"></select>
+            <p id="error-plan" class="error-campo"></p>
+          </div>
+          <div class="alta-acciones">
+            <button type="submit" class="btn-primary">Confirmar</button>
+            <button id="cancelar-membresia" type="button" class="btn-secundario">Cancelar</button>
+          </div>
+        </form>
+      </section>
+    </article>
+
+    <form id="form-alta" novalidate hidden>
+      <h2>Registrar socio</h2>
+      <div id="alta-aviso" class="alert-error"></div>
+
+      <div class="form-group">
+        <label for="campo-nombre">Nombre</label>
+        <input id="campo-nombre" name="nombre" maxlength="100" autocomplete="off"
+               aria-describedby="error-nombre">
+        <p id="error-nombre" class="error-campo"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="campo-celular">Celular</label>
+        <input id="campo-celular" name="celular" inputmode="numeric" maxlength="10"
+               autocomplete="off" aria-describedby="ayuda-celular error-celular">
+        <p id="ayuda-celular" class="ayuda">10 dígitos, sin espacios.</p>
+        <p id="error-celular" class="error-campo"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="campo-fecha">Fecha de nacimiento (opcional)</label>
+        <input id="campo-fecha" name="fecha_nacimiento" type="date"
+               aria-describedby="error-fecha_nacimiento">
+        <p id="error-fecha_nacimiento" class="error-campo"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="campo-metas">Metas (opcional)</label>
+        <textarea id="campo-metas" name="metas" rows="3" maxlength="1000"
+                  aria-describedby="error-metas"></textarea>
+        <p id="error-metas" class="error-campo"></p>
+      </div>
+
+      <div class="alta-acciones">
+        <button type="submit" class="btn-primary">Guardar socio</button>
+        <button id="cancelar-alta" type="button" class="btn-secundario">Cancelar</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<script src="/js/auth.js"></script>
+<script src="/js/socios.js"></script>
+</body>
+</html>

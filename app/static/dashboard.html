@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Principal - Sistema de Gimnasios</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<div class="form-card" style="max-width: 600px;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+    <h2>Panel Principal</h2>
+    <button onclick="logoutUser()" class="btn-primary" style="width: auto; padding: 0.5rem 1rem; margin-top: 0; font-size: 0.85rem;">Cerrar sesión</button>
+  </div>
+
+  <div class="section-title">Datos de la Sesión</div>
+  <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+    <p style="margin-bottom: 0.5rem;"><strong>Usuario ID:</strong> <span id="user-id">-</span></p>
+    <p style="margin-bottom: 0.5rem;"><strong>Rol:</strong> <span id="user-role" class="badge-role">-</span></p>
+    <p><strong>Gimnasios asignados:</strong> <span id="user-gyms">-</span></p>
+  </div>
+
+  <div class="section-title">Módulos</div>
+  <a href="/planes.html" class="btn-primary" style="display: block; text-align: center; text-decoration: none; margin-top: 0; margin-bottom: 0.75rem;">Planes de Membresía</a>
+  <a href="/cobros.html" class="btn-primary" style="display: block; text-align: center; text-decoration: none; margin-top: 0; margin-bottom: 1rem;">Cobrar Membresía</a>
+  <a href="/socios.html" class="btn-primary" style="display: block; text-align: center; text-decoration: none; margin-top: 0; margin-bottom: 1.5rem;">Gestión de socios</a>
+  <a href="recepcion.html" class="btn-primary" style="display: block; text-align: center; text-decoration: none; margin-top: 0; margin-bottom: 1.5rem;">Registrar asistencia de socio</a>
+
+  <div class="section-title">Pruebas de Acceso Multisede</div>
+  <div class="form-group">
+    <button onclick="fetchGymData(1)" class="btn-primary" style="margin-top: 0; margin-bottom: 0.5rem;">Consultar Gimnasio ID 1 (Asignado)</button>
+    <button onclick="fetchGymData(99)" class="btn-primary" style="background-color: #64748b; margin-top: 0;">Consultar Gimnasio ID 99 (Prueba 403)</button>
+  </div>
+
+  <div class="form-group" style="margin-top: 1rem;">
+    <label>Resultado de la consulta:</label>
+    <pre id="api-result" style="background: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px; font-size: 0.85rem; overflow-x: auto; min-height: 80px;"></pre>
+  </div>
+</div>
+
+<script src="/js/auth.js"></script>
+<script src="/js/dashboard.js"></script>
+</body>
+</html>

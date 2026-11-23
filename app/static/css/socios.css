@@ -1,0 +1,203 @@
+/* Pantalla de socios (SCRUM-14). Reutiliza las variables de styles.css. */
+
+[hidden] { display: none !important; }
+
+body.pagina-socios {
+  display: block;
+  padding: 0;
+}
+
+/* Barra superior */
+.barra-socios {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem clamp(1rem, 3vw, 2rem);
+  background-color: var(--primary-btn);
+  color: #ffffff;
+}
+.barra-socios label { font-weight: 600; font-size: 0.95rem; }
+.barra-socios select {
+  min-width: 0;
+  max-width: 50vw;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  font: inherit;
+  color: var(--text-color);
+}
+.enlace-barra { color: #ffffff; margin-right: 0.5rem; }
+.boton-barra {
+  margin-left: auto;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.boton-barra:hover { background-color: rgba(255, 255, 255, 0.12); }
+
+:focus-visible { outline: 3px solid #f4c430; outline-offset: 2px; }
+
+/* Distribución: lista a la izquierda, ficha o alta a la derecha */
+.recepcion {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 26rem);
+  gap: clamp(1rem, 3vw, 2rem);
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem);
+  align-items: start;
+}
+.busqueda h2 { font-size: 1.8rem; margin-bottom: 1rem; }
+
+.busqueda-controles { display: flex; gap: 0.6rem; }
+.busqueda-controles input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1.05rem;
+}
+.busqueda-controles .btn-primary {
+  width: auto;
+  margin-top: 0;
+  padding: 0.8rem 1.2rem;
+  white-space: nowrap;
+}
+
+.estado { color: var(--label-color); margin: 0.75rem 0 0.4rem; min-height: 1.5rem; }
+
+.lista { list-style: none; }
+.lista button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.55rem 0.7rem;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--border-color);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.lista button:hover { background-color: var(--card-bg); }
+.lista button[aria-current="true"] {
+  background-color: var(--card-bg);
+  box-shadow: inset 4px 0 var(--primary-btn);
+}
+.lista-disco {
+  flex: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background-color: var(--primary-btn);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.lista-nombre { font-weight: 600; overflow-wrap: anywhere; }
+.lista-celular { margin-left: auto; color: var(--label-color); font-size: 0.9rem; }
+
+/* Panel derecho */
+.panel { max-width: none; padding: 1.75rem; min-height: 14rem; }
+.panel h2 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+
+.ficha { text-align: center; }
+.disco {
+  width: 10.5rem;
+  height: 10.5rem;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-btn);
+  color: #ffffff;
+  box-shadow:
+    inset 0 0 0 0.5rem var(--primary-btn-hover),
+    inset 0 0 0 0.65rem #f4c430;
+}
+.ficha.recien .disco { animation: colocar 0.32s ease-out; }
+@keyframes colocar { from { transform: translateX(-2.5rem) rotate(-40deg); } }
+.disco-numero { font-size: 3.6rem; font-weight: 700; line-height: 1; }
+.disco-numero.largo { font-size: 2.3rem; }
+.disco-texto { font-size: 0.8rem; }
+.ficha h2 { overflow-wrap: anywhere; }
+.confirmacion { color: #1d6b42; font-weight: 600; margin-top: 0.25rem; }
+.ficha dl { margin-top: 1.25rem; text-align: left; }
+.ficha dt { color: var(--label-color); font-size: 0.85rem; margin-top: 0.75rem; }
+.ficha dd { white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* Formulario de alta */
+#form-alta h2 { margin-bottom: 1rem; }
+#form-alta .form-group { margin-bottom: 0.5rem; }
+#form-alta textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font: inherit;
+  resize: vertical;
+}
+#form-alta [aria-invalid="true"] { border: 2px solid var(--error-text); }
+.ayuda { color: var(--label-color); font-size: 0.85rem; margin-top: 0.25rem; }
+.error-campo {
+  color: var(--error-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  min-height: 1.3rem;
+  margin-top: 0.2rem;
+}
+.alta-acciones { display: flex; gap: 0.6rem; }
+.alta-acciones .btn-primary { width: auto; padding: 0.75rem 1.2rem; }
+.btn-secundario {
+  margin-top: 1rem;
+  padding: 0.75rem 1.2rem;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-color);
+  font: inherit;
+  cursor: pointer;
+}
+.btn-secundario:hover { background-color: var(--bg-color); }
+
+/* Membresía del socio (dentro de la ficha) */
+.membresia {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  text-align: left;
+}
+.membresia .section-title { margin-top: 0; margin-bottom: 0.25rem; }
+.membresia-vigente { color: #1d6b42; font-weight: 600; }
+.membresia-sin { color: var(--error-text); font-weight: 600; }
+#membresia-aviso { margin: 0.75rem 0 0; }
+#form-membresia { margin-top: 0.75rem; }
+#form-membresia .form-group { margin-bottom: 0.5rem; }
+#form-membresia [aria-invalid="true"] { border: 2px solid var(--error-text); }
+
+@media (max-width: 52rem) {
+  .recepcion { grid-template-columns: minmax(0, 1fr); }
+  .busqueda-controles { flex-wrap: wrap; }
+  .busqueda-controles .btn-primary { width: 100%; }
+  .lista-celular { display: none; }
+  .enlace-barra { display: none; }
+  /* En pantalla angosta, la ficha y el alta van antes que la lista. */
+  .panel { order: -1; min-height: 0; }
+  .panel:has(> #panel-vacio:not([hidden])) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ficha.recien .disco { animation: none; }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recepción - Sistema de Gimnasios</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/socios.css">
+  <link rel="stylesheet" href="/css/recepcion.css">
+</head>
+<body class="pagina-socios">
+
+<header class="barra-socios">
+  <a href="/dashboard.html" class="enlace-barra">Panel principal</a>
+  <label for="selector-gimnasio">Gimnasio</label>
+  <select id="selector-gimnasio"></select>
+  <button type="button" class="boton-barra" onclick="logoutUser()">Cerrar sesión</button>
+</header>
+
+<main class="recepcion recepcion-entradas">
+  <section class="busqueda registro" aria-label="Registrar entrada">
+    <h2>Recepción</h2>
+    <form id="form-entrada" class="busqueda-controles" novalidate>
+      <input id="campo-referencia" name="num_referencia" inputmode="numeric" maxlength="9"
+             autocomplete="off" placeholder="Número de referencia"
+             aria-label="Número de referencia" aria-describedby="error-referencia">
+      <button id="registrar" type="submit" class="btn-primary">Registrar entrada</button>
+    </form>
+    <p id="error-referencia" class="error-campo"></p>
+  </section>
+
+  <section class="entradas" aria-label="Entradas recientes">
+    <h3 class="section-title">Entradas recientes</h3>
+    <p id="estado-entradas" class="estado" aria-live="polite"></p>
+    <ul id="lista-entradas" class="lista"></ul>
+  </section>
+
+  <section id="panel" class="form-card panel" aria-live="polite">
+    <p id="panel-vacio" class="estado">Aquí aparece el socio cuando registres una entrada.</p>
+
+    <article id="resultado" class="ficha" hidden>
+      <div class="disco" aria-label="Número de referencia">
+        <span id="resultado-numero" class="disco-numero"></span>
+        <span class="disco-texto">referencia</span>
+      </div>
+      <h2 id="resultado-nombre"></h2>
+      <p id="resultado-confirmacion" class="confirmacion" hidden></p>
+
+      <div id="resultado-vencida" class="alert-aviso" hidden>
+        <p class="aviso-titulo">Membresía vencida</p>
+        <p>¿Permitir la entrada de este socio?</p>
+        <div class="acciones-aviso">
+          <button id="permitir-entrada" type="button" class="btn-primary">Permitir entrada</button>
+          <button id="rechazar-entrada" type="button" class="btn-secundario">Rechazar</button>
+        </div>
+      </div>
+    </article>
+
+    <div id="aviso-error" class="alert-error">
+      <p id="aviso-error-titulo" class="aviso-titulo"></p>
+      <p id="aviso-error-detalle"></p>
+    </div>
+  </section>
+</main>
+
+<script src="/js/auth.js"></script>
+<script src="/js/recepcion.js"></script>
+</body>
+</html>

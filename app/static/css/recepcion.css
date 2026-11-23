@@ -1,0 +1,72 @@
+/* Vista de Recepción. Reutiliza la barra, las dos columnas, la ficha con el
+   disco y la lista de socios.css; aquí solo va lo que esa hoja no tiene. */
+
+:root {
+  --aviso-bg: #fff4d6;
+  --aviso-text: #7a4b00;
+}
+
+/* Misma rejilla de dos columnas que .recepcion. A la izquierda van el registro
+   y las entradas recientes; a la derecha, el socio que acaba de pasar. */
+.recepcion-entradas {
+  grid-template-areas:
+    "registro panel"
+    "entradas panel";
+  grid-template-rows: auto 1fr;
+}
+.recepcion-entradas .registro { grid-area: registro; }
+.recepcion-entradas .entradas { grid-area: entradas; }
+.recepcion-entradas .panel { grid-area: panel; }
+
+/* En pantalla angosta: registro, resultado y luego las entradas recientes */
+@media (max-width: 52rem) {
+  .recepcion-entradas {
+    grid-template-areas:
+      "registro"
+      "panel"
+      "entradas";
+    grid-template-rows: none;
+  }
+}
+
+/* Campo del número de referencia */
+#campo-referencia { font-size: 1.3rem; font-weight: 600; }
+#campo-referencia[aria-invalid="true"] { border: 2px solid var(--error-text); }
+
+/* Entradas recientes: mismo aspecto que las filas de .lista, sin ser botones */
+.entrada {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.entrada-hora {
+  margin-left: auto;
+  color: var(--label-color);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Alerta de membresía vencida (.alert-error y .confirmacion ya existen) */
+.alert-aviso {
+  background-color: var(--aviso-bg);
+  color: var(--aviso-text);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  margin-top: 1.25rem;
+}
+.aviso-titulo { font-weight: 700; font-size: 1rem; }
+.acciones-aviso {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+/* .btn-primary y .btn-secundario traen margen y ancho completo; aquí van en línea */
+.acciones-aviso button {
+  width: auto;
+  margin-top: 0;
+  padding: 0.6rem 1.1rem;
+}

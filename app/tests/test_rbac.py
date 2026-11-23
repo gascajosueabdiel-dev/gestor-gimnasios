@@ -1,0 +1,1 @@
+# Cobertura CA2 (Restricción por gimnasio)
